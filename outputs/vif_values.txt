@@ -1,0 +1,4 @@
+       Access_Electricity              Poverty_Rate                Gini_Index          Log_Poverty_Rate 
+               185.503850                  4.040102                 33.230236                  5.820904 
+Access_Electricity_x_Gini          Poverty_Quartile 
+               202.849335                  2.750747 

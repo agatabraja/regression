@@ -1,0 +1,22 @@
+
+Call:
+lm(formula = Log_Internet_Usage ~ Log_Access_Electricity + Log_Poverty_Rate + 
+    Poverty_Quartile, data = refined_data_no_outliers)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.15973 -0.21065  0.06986  0.32094  1.25956 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)            -1.53345    0.10813 -14.182   <2e-16 ***
+Log_Access_Electricity  1.26648    0.02251  56.251   <2e-16 ***
+Log_Poverty_Rate       -0.22988    0.02220 -10.357   <2e-16 ***
+Poverty_Quartile       -0.03244    0.01514  -2.143   0.0322 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.518 on 2503 degrees of freedom
+Multiple R-squared:  0.6594,	Adjusted R-squared:  0.659 
+F-statistic:  1615 on 3 and 2503 DF,  p-value: < 2.2e-16
+

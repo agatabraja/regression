@@ -1,0 +1,26 @@
+
+Call:
+lm(formula = Internet_Usage ~ Access_Electricity + Poverty_Rate + 
+    Gini_Index + Log_Poverty_Rate + Access_Electricity_x_Gini + 
+    Poverty_Quartile, data = refined_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-65.591 -10.747  -0.295  12.185  55.481 
+
+Coefficients:
+                            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)               -16.153871  16.934500  -0.954 0.340220    
+Access_Electricity          1.102251   0.182080   6.054 1.62e-09 ***
+Poverty_Rate                0.447101   0.097375   4.592 4.61e-06 ***
+Gini_Index                  0.763620   0.459678   1.661 0.096790 .  
+Log_Poverty_Rate           -9.624843   1.101171  -8.741  < 2e-16 ***
+Access_Electricity_x_Gini  -0.013725   0.004993  -2.749 0.006018 ** 
+Poverty_Quartile           -2.056409   0.544698  -3.775 0.000163 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 18.91 on 2645 degrees of freedom
+Multiple R-squared:  0.5558,	Adjusted R-squared:  0.5548 
+F-statistic: 551.7 on 6 and 2645 DF,  p-value: < 2.2e-16
+

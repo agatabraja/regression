@@ -1,0 +1,2 @@
+Log_Access_Electricity       Log_Poverty_Rate       Poverty_Quartile 
+              1.160259               2.786351               2.579689 

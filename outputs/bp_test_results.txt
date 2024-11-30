@@ -1,0 +1,6 @@
+
+	studentized Breusch-Pagan test
+
+data:  weighted_model
+BP = 38.844, df = 6, p-value = 7.679e-07
+
