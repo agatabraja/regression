@@ -1,4 +1,8 @@
-       Access_Electricity              Poverty_Rate                Gini_Index          Log_Poverty_Rate 
-               185.503850                  4.040102                 33.230236                  5.820904 
-Access_Electricity_x_Gini          Poverty_Quartile 
-               202.849335                  2.750747 
+                      Access_Electricity                         Log_Poverty_Rate                               Gini_Index 
+                              242.920049                                 8.381509                                42.931435 
+           Mobile_Cellular_Subscriptions                              Poverty_Gap                   Communications_Imports 
+                              184.264298                                 4.340860                                 1.074741 
+                        Poverty_Quartile            Access_Electricity:Gini_Index           Access_Electricity:Poverty_Gap 
+                                2.771834                               261.106824                                 6.526448 
+Gini_Index:Mobile_Cellular_Subscriptions 
+                              193.093591 

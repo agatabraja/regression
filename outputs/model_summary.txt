@@ -1,26 +1,32 @@
 
 Call:
-lm(formula = Internet_Usage ~ Access_Electricity + Poverty_Rate + 
-    Gini_Index + Log_Poverty_Rate + Access_Electricity_x_Gini + 
+lm(formula = Internet_Usage ~ Access_Electricity + Log_Poverty_Rate + 
+    Gini_Index + Mobile_Cellular_Subscriptions + Poverty_Gap + 
+    Communications_Imports + Access_Electricity:Gini_Index + 
+    Poverty_Gap:Access_Electricity + Mobile_Cellular_Subscriptions:Gini_Index + 
     Poverty_Quartile, data = refined_data)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--65.591 -10.747  -0.295  12.185  55.481 
+-60.138 -10.653  -0.188   9.991  57.164 
 
 Coefficients:
-                            Estimate Std. Error t value Pr(>|t|)    
-(Intercept)               -16.153871  16.934500  -0.954 0.340220    
-Access_Electricity          1.102251   0.182080   6.054 1.62e-09 ***
-Poverty_Rate                0.447101   0.097375   4.592 4.61e-06 ***
-Gini_Index                  0.763620   0.459678   1.661 0.096790 .  
-Log_Poverty_Rate           -9.624843   1.101171  -8.741  < 2e-16 ***
-Access_Electricity_x_Gini  -0.013725   0.004993  -2.749 0.006018 ** 
-Poverty_Quartile           -2.056409   0.544698  -3.775 0.000163 ***
+                                           Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                               0.6018301 17.8014849   0.034  0.97303    
+Access_Electricity                        0.3818504  0.1908612   2.001  0.04553 *  
+Log_Poverty_Rate                         -8.3149649  1.2103774  -6.870 7.99e-12 ***
+Gini_Index                               -0.0728708  0.4786018  -0.152  0.87900    
+Mobile_Cellular_Subscriptions             0.3629976  0.1096106   3.312  0.00094 ***
+Poverty_Gap                               1.0543424  0.2311026   4.562 5.29e-06 ***
+Communications_Imports                    0.2119676  0.0230696   9.188  < 2e-16 ***
+Poverty_Quartile                         -2.1867072  0.5008574  -4.366 1.31e-05 ***
+Access_Electricity:Gini_Index             0.0009151  0.0051888   0.176  0.86002    
+Access_Electricity:Poverty_Gap            0.0085270  0.0079718   1.070  0.28488    
+Gini_Index:Mobile_Cellular_Subscriptions -0.0046090  0.0029875  -1.543  0.12301    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 18.91 on 2645 degrees of freedom
-Multiple R-squared:  0.5558,	Adjusted R-squared:  0.5548 
-F-statistic: 551.7 on 6 and 2645 DF,  p-value: < 2.2e-16
+Residual standard error: 17.32 on 2641 degrees of freedom
+Multiple R-squared:  0.6279,	Adjusted R-squared:  0.6265 
+F-statistic: 445.6 on 10 and 2641 DF,  p-value: < 2.2e-16
 

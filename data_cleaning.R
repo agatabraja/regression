@@ -1,39 +1,82 @@
 # Load necessary libraries
+if (!requireNamespace("dplyr", quietly = TRUE)) install.packages("dplyr")
+if (!requireNamespace("tidyr", quietly = TRUE)) install.packages("tidyr")
+if (!requireNamespace("stringr", quietly = TRUE)) install.packages("stringr")
 library(dplyr)
+library(tidyr)
+library(stringr)
 
-# Load the dataset
-data <- read.csv("data_pivoted_CO_47+2.csv", stringsAsFactors = FALSE)
+# Step 1: Load the datasets
+data_pivoted <- read.csv("data_pivoted_CO_47+2.csv", stringsAsFactors = FALSE)
+print("Initial data dimensions:")
+print(dim(data_pivoted))
 
-# Drop columns with 100% missing values
-data_cleaned <- data %>% select_if(~sum(!is.na(.)) > 0)
+# Step 2: Extract Year and Metric from the `Attribute` column
+data_pivoted <- data_pivoted %>%
+  mutate(
+    Year = str_extract(Attribute, "\\[YR[0-9]{4}\\]") %>%
+      str_remove_all("\\[YR|\\]") %>%
+      as.numeric(),
+    Metric = str_remove(Attribute, "\\[YR[0-9]{4}\\]") %>%
+      str_trim()
+  )
 
-# Inspect column names for reference
-print("Column names in the dataset:")
-print(colnames(data_cleaned))
+# Step 3: Filter for GINI data completeness
+gini_completeness <- data_pivoted %>%
+  group_by(Country.Name) %>%
+  summarise(
+    Years_With_Data = sum(!is.na(Gini.index)),
+    Total_Years = n()
+  ) %>%
+  arrange(desc(Years_With_Data))
 
-# Dynamically match columns using partial matches or regex
-selected_columns <- grep(
-  pattern = "electricity|urban population|Internet|cellular|Gini|poverty",
-  colnames(data_cleaned),
-  value = TRUE,
-  ignore.case = TRUE
-)
+print("Gini completeness summary:")
+print(head(gini_completeness))
 
-# Ensure matching columns are found
-if (length(selected_columns) == 0) {
-  stop("No matching columns found. Please verify the column names.")
-}
+# Step 4: Select top 70 countries based on GINI completeness
+top_countries <- gini_completeness %>%
+  head(70) %>%
+  pull(Country.Name)
 
-# Filter the dataset to include only the selected columns
-data_cleaned <- data_cleaned %>% select(all_of(selected_columns))
+print("Number of top countries:")
+print(length(top_countries))
 
-# Handle missing values
-data_cleaned <- data_cleaned %>%
-  mutate(across(everything(), ~ifelse(is.na(.), mean(., na.rm = TRUE), .)))
+# Step 5: Filter the dataset for top countries
+filtered_data <- data_pivoted %>%
+  filter(Country.Name %in% top_countries)
 
-# Save the cleaned dataset for further analysis
-write.csv(data_cleaned, "data_cleaned.csv", row.names = FALSE)
+print("Filtered data dimensions:")
+print(dim(filtered_data))
 
-# View the cleaned dataset
-print("Cleaned dataset preview:")
-print(head(data_cleaned))
+# After getting filtered_data
+variable_completeness <- filtered_data %>%
+  select_at(vars(-Country.Name, -Attribute, -Year, -Metric)) %>%
+  summarise(across(everything(),
+                   ~mean(!is.na(.)),
+                   .names = "{.col}"
+  )) %>%
+  pivot_longer(
+    everything(),
+    names_to = "Metric",
+    values_to = "Completeness"
+  ) %>%
+  filter(Completeness >= 0.7) %>%
+  arrange(desc(Completeness))
+
+# Create final dataset using vars() and select_at()
+final_data <- filtered_data %>%
+  select_at(vars("Country.Name", "Year", all_of(variable_completeness$Metric))) %>%
+  arrange(Country.Name, Year)
+
+
+
+# Step 8: Save outputs
+if (!dir.exists("outputs")) dir.create("outputs")
+
+# Save with explicit row.names=FALSE and handling of NA values
+write.csv(final_data, "outputs/final_cleaned_data.csv", row.names = FALSE, na = "")
+write.csv(gini_completeness, "outputs/gini_completeness.csv", row.names = FALSE)
+write.csv(variable_completeness, "outputs/variable_completeness.csv", row.names = FALSE)
+write.csv(data.frame(x = top_countries), "outputs/top_countries.csv", row.names = FALSE)
+
+print("Data cleaning process completed successfully. Outputs saved in the 'outputs' directory.")

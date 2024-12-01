@@ -1,22 +1,23 @@
 
 Call:
-lm(formula = Log_Internet_Usage ~ Log_Access_Electricity + Log_Poverty_Rate + 
-    Poverty_Quartile, data = refined_data_no_outliers)
+lm(formula = Log_Internet_Usage ~ Log_Poverty_Rate + Mobile_Cellular_Subscriptions_Centered + 
+    Poverty_Gap + Poverty_Quartile, data = refined_data)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--2.15973 -0.21065  0.06986  0.32094  1.25956 
+    Min      1Q  Median      3Q     Max 
+-3.2799 -0.3806  0.2137  0.5315  1.7975 
 
 Coefficients:
-                       Estimate Std. Error t value Pr(>|t|)    
-(Intercept)            -1.53345    0.10813 -14.182   <2e-16 ***
-Log_Access_Electricity  1.26648    0.02251  56.251   <2e-16 ***
-Log_Poverty_Rate       -0.22988    0.02220 -10.357   <2e-16 ***
-Poverty_Quartile       -0.03244    0.01514  -2.143   0.0322 *  
+                                         Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                             4.339e+00  4.470e-02  97.068   <2e-16 ***
+Log_Poverty_Rate                       -5.587e-01  4.280e-02 -13.053   <2e-16 ***
+Mobile_Cellular_Subscriptions_Centered -3.624e-11  1.097e-10  -0.331    0.741    
+Poverty_Gap                            -1.062e-02  7.746e-03  -1.372    0.170    
+Poverty_Quartile                        8.874e-03  2.572e-02   0.345    0.730    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.518 on 2503 degrees of freedom
-Multiple R-squared:  0.6594,	Adjusted R-squared:  0.659 
-F-statistic:  1615 on 3 and 2503 DF,  p-value: < 2.2e-16
+Residual standard error: 0.9001 on 2647 degrees of freedom
+Multiple R-squared:   0.21,	Adjusted R-squared:  0.2088 
+F-statistic: 175.9 on 4 and 2647 DF,  p-value: < 2.2e-16
 

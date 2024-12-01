@@ -1,0 +1,4 @@
+                     Log_Poverty_Rate         Mobile_Cellular_Subscriptions Mobile_Cellular_Subscriptions_Squared 
+                             4.107607                              7.374091                              6.942782 
+                          Poverty_Gap                Communications_Imports                      Poverty_Quartile 
+                             1.817037                              1.049473                              2.703944 

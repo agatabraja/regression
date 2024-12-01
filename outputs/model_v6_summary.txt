@@ -1,0 +1,26 @@
+
+Call:
+lm(formula = Log_Internet_Usage ~ Log_Poverty_Rate + Mobile_Cellular_Subscriptions_Centered + 
+    Mobile_Cellular_Subscriptions_Centered_Squared + Poverty_Gap + 
+    Communications_Imports + Poverty_Quartile, data = refined_data_cleaned)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.27616 -0.31966  0.05409  0.34932  1.93242 
+
+Coefficients:
+                                                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                                     3.832e+00  4.620e-02  82.944  < 2e-16 ***
+Log_Poverty_Rate                               -2.013e-01  3.110e-02  -6.473 1.15e-10 ***
+Mobile_Cellular_Subscriptions_Centered          1.777e-02  3.492e-04  50.875  < 2e-16 ***
+Mobile_Cellular_Subscriptions_Centered_Squared -1.389e-04  5.412e-06 -25.659  < 2e-16 ***
+Poverty_Gap                                    -8.382e-03  7.742e-03  -1.083    0.279    
+Communications_Imports                          4.330e-03  8.402e-04   5.153 2.76e-07 ***
+Poverty_Quartile                               -1.341e-02  1.758e-02  -0.763    0.446    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.5993 on 2494 degrees of freedom
+Multiple R-squared:  0.6396,	Adjusted R-squared:  0.6387 
+F-statistic: 737.6 on 6 and 2494 DF,  p-value: < 2.2e-16
+

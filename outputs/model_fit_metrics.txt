@@ -1,0 +1,7 @@
+$Adjusted_R_Squared
+[1] 0.6264656
+
+$F_Statistic
+  value 
+445.607 
+
